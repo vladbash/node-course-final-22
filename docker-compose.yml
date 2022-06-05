@@ -1,0 +1,36 @@
+version: '3'
+services:
+  course-app:
+    build: 
+      context: .
+      dockerfile: ./.docker/Dockerfile.dev
+    ports:
+      - 3031:80
+      - 3001:443
+    command: nodemon server.js
+    networks:
+      - local
+    links:
+      - db
+      - redis
+    volumes:
+      - .:/app
+  db:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    networks:
+      - local
+    volumes:
+      - ../data-volumes/db:/data/db
+  redis:
+    image: bitnami/redis:latest
+    networks:
+      - local
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - ../data-volumes/redis:/bitnami/redis/data
+networks:
+  local:
+
