@@ -5,8 +5,8 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const RedisStore = require("connect-redis")(session);
-const { createClient } = require('redis');
+// const RedisStore = require("connect-redis")(session);
+// const { createClient } = require('redis');
 
 const { appRouter, apiRouter } = require('./src');
 const { passportStrategies } = require('./src/services');

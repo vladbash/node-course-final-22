@@ -6,6 +6,6 @@ module.exports = {
         secret: 'hillelNodeCourse'
     },
     db: {
-        connectionString: ''
+        connectionString: process.env.MONGO_URL
     }
 };
