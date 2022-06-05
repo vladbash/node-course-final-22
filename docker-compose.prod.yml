@@ -1,7 +1,33 @@
 version: '3'
 services:
   course-app:
+    restart: on-failure
     build: 
       context: .
       dockerfile: ./.docker/Dockerfile.prod
-    
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - local
+    links:
+      - db
+      - redis
+  db:
+    restart: always
+    image: mongo:latest
+    networks:
+      - local
+    volumes:
+      - ../data-volumes/db:/data/db
+  # redis:
+  #   image: bitnami/redis:latest
+  #   networks:
+  #     - local
+  #   environment:
+  #     - ALLOW_EMPTY_PASSWORD=yes
+  #   volumes:
+  #     - ../data-volumes/redis:/bitnami/redis/data
+networks:
+  local:
+
