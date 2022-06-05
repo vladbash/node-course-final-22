@@ -5,20 +5,13 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
-// const RedisStore = require("connect-redis")(session);
-// const { createClient } = require('redis');
+const MongoStore = require('connect-mongo');
 
 const { appRouter, apiRouter } = require('./src');
 const { passportStrategies } = require('./src/services');
 
 (async () => {
     const app = express();
-    // const redisClient = createClient({ url: 'redis://redis:6379', legacyMode: true });
-    // try {
-    //     await redisClient.connect();
-    // } catch (e) {
-    //     console.error(e);
-    // }
 
     passport.use(passportStrategies.local);
     passport.use(passportStrategies.google);
@@ -39,7 +32,7 @@ const { passportStrategies } = require('./src/services');
         secret: config.get('session.secret'),
         resave: false,
         saveUninitialized: false,
-        // store: new RedisStore({ client: redisClient })
+        store: MongoStore.create({ mongoUrl: config.get('db.connectionString') })
     }));
     app.use(passport.authenticate('session'));
 

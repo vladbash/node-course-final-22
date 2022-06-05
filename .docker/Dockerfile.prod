@@ -1,0 +1,15 @@
+FROM node:alpine
+
+RUN npm i -g nodemon
+
+RUN apk update && apk upgrade
+
+RUN apk add --no-cache sqlite
+
+COPY . /app
+
+WORKDIR /app
+
+RUN npm i
+
+CMD ["npm", "start"]
