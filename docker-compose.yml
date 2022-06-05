@@ -12,7 +12,7 @@ services:
       - local
     links:
       - db
-      - redis
+      # - redis
     volumes:
       - .:/app
   db:

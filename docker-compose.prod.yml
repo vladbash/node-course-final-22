@@ -12,7 +12,7 @@ services:
       - local
     links:
       - db
-      - redis
+      # - redis
   db:
     restart: always
     image: mongo:latest
