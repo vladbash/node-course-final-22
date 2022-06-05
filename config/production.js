@@ -1,6 +1,6 @@
 module.exports = {
     http: {
-        port: 80
+        port: process.env.PORT || 80
     },
     session: {
         secret: 'hillelNodeCourse'
