@@ -41,8 +41,20 @@ const verify = async verifyingKey => {
     }
 };
 
+const getUser = async id => {
+    const user = await User.findById(id);
+    return user;
+};
+
+const updateUser = async (id, name, email) => {
+    const user = await User.findOneAndUpdate({ _id: id }, { $set: { name, email } });
+    return user;
+};
+
 module.exports = {
     login,
     signup,
-    verify
+    verify,
+    getUser,
+    updateUser
 };
