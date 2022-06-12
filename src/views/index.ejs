@@ -18,12 +18,18 @@
                 </div>
             </div>
             <div class="list-group list-group-checkable d-grid gap-2 border-0 w-auto">
-  
-                <label class="list-group-item rounded-3 py-3" for="listGroupCheckableRadios1">
-                  First radio
-                  <span class="d-block small opacity-50">With support text underneath to add more detail</span>
-                </label>
-              </div>
+                <% docs && docs.forEach(doc => {%>
+                <div class="list-group-item rounded-3 py-3 d-flex align-items-center">
+                    <label class="w-100" for="listGroupCheckableRadios1">
+                        <%= doc.name %>
+                        <span class="d-block small opacity-50"><%= doc.content.slice(0, 40) %>... </span>
+                    </label>
+                    <% if (auth) { %>
+                    <a class="btn btn-sm btn-outline-secondary" href="/document/<%=doc._id%> ">Edit</a>
+                    <% } %>
+                </div>
+                <%}); %>
+            </div>
         </div>
     </main>
     <%- include('_partials/footer'); -%>

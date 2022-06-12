@@ -18,13 +18,6 @@ loginRouter.post('/', async (req, res, next) => {
         req.body.username = email;
 
         passport.authenticate('local',
-            // (err, user, messages) => {
-            //     if (user) {
-            //         res.redirect('/');
-            //     } else {
-            //         res.render('login', messages);
-            //     }
-            // }
             {
                 successReturnToOrRedirect: '/',
                 failureRedirect: '/login',

@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const MongoStore = require('connect-mongo');
 
-const { appRouter, apiRouter } = require('./src');
+const { appRouter, apiRouter, sockets } = require('./src');
 const { passportStrategies } = require('./src/services');
 
 (async () => {
@@ -55,6 +55,7 @@ const { passportStrategies } = require('./src/services');
             app.listen(config.get('http.port'), () => {
                 console.log(`Server is running on http://localhost:${config.get('http.port')}`);
             });
+            sockets.init();
         }).catch(e => {
             console.error('Connection error: ', e);
         });

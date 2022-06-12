@@ -1,10 +1,11 @@
 const { Router } = require('express');
+const { Document } = require('../../models');
 
 const homeRouter = new Router();
 
 homeRouter.get('/', async (req, res) => {
-    console.log(req.user);
-    res.render('index');
+    const docs = await Document.find();
+    res.render('index', { docs });
 });
 
 homeRouter.post('/', (req, res) => {

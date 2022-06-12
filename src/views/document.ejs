@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('_partials/head.ejs', { title: doc.id ? `Edit - ${doc.name}` : 'Create document' }) %>
+
+<body class="d-flex flex-column h-100">
+    <% if(doc.id && auth) { %>
+        <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" defer></script>
+        <script src="/assets/document.js" defer></script>
+    <% } %>
+    <%- include('_partials/header', { auth }); -%>
+    <main class="flex-shrink-0">
+        <div class="container">
+            <form action="" method="post">
+                <div class="row g-2 mb-3">
+                    <div class="col-md">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInput"
+                                placeholder="Some important doc..." name="name" value="<%=doc && doc.name%>">
+                            <label for="floatingInput">Document name</label>
+                        </div>
+                    </div>
+                    <% if(!doc.id) { %>
+                    <div class="col-md-1 d-flex">
+                        <button type="submit" class="btn btn-primary align-middle">Save</button>
+                    </div>
+                    <% } %>
+                </div>
+                <div class="row g-2">
+                    <div class="mb-3">
+                        <label for="contentArea" class="form-label">Document content</label>
+                        <textarea class="form-control" id="contentArea" rows="12"
+                            name="content"><%=doc && doc.content%></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    <%- include('_partials/footer'); -%>
+</body>
+
+</html>

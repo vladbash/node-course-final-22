@@ -5,6 +5,7 @@ const appRouter = new Router();
 appRouter.use('/', require('./home/home'));
 appRouter.use('/signup', require('./signup/signup'));
 appRouter.use('/login', require('./login/login'));
+appRouter.use('/document', require('./document/document'));
 appRouter.use('/verify', require('./verify/verify'));
 appRouter.use('/oauth2', require('./oauth2/oauth2'));
 

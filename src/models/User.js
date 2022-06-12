@@ -32,6 +32,6 @@ const UserSchema = new Schema({
         type: SchemaTypes.ObjectId,
         ref: 'Document'
     }
-});
+}, { timestamps: true });
 
 module.exports = model('User', UserSchema, 'users');
